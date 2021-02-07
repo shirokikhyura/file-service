@@ -1,0 +1,11 @@
+.idea
+.git
+/assets/
+/var/cache/dev/
+/var/cache/test/
+/tests/
+/files/*
+/var/log/*
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
