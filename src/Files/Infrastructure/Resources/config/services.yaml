@@ -19,4 +19,4 @@ services:
 
   Files\Application\Dto\SaveFileDtoFactory:
     arguments:
-      - '%env(APP_HOSTNAME)%'
+      - '%env(EXTERNAL_SERVICE_URL)%'
