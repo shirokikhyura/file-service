@@ -35,6 +35,5 @@ jobs:
           push: true
           pull: true
           tags: shirokikh/file-service:latest
-          target: latest
           cache-from: type=registry,ref=shirokikh/file-service:buildcache
           cache-to: type=registry,ref=shirokikh/file-service:buildcache,mode=max
