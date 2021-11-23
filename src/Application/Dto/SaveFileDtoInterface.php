@@ -1,25 +1,25 @@
 <?php
 
-namespace Files\Application\Dto;
+namespace FileService\Application\Dto;
 
 /**
  * Interface SaveFileDtoInterface
- * @package Files\Application\Dto
+ * @package Application\Dto
  */
 interface SaveFileDtoInterface
 {
     /**
      * @return string
      */
-    public function getHost() : string;
+    public function getId() : string;
 
     /**
      * @return string
      */
-    public function getPath() : string;
+    public function getClientName() : string;
 
     /**
      * @return string
      */
-    public function getFileName() : string;
+    public function getFullName() : string;
 }

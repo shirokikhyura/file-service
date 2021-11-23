@@ -1,0 +1,7 @@
+version: '2'
+syncs:
+  file-service-sync:
+    src: .
+    sync_strategy: unison
+    unison_image: eugenmayer/unison:2.51.3-4.12.0-ARM64
+    sync_excludes: ['var', '.git', '.idea']

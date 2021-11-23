@@ -27,13 +27,26 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push container
+      - name: Build and push fpm container
         uses: docker/build-push-action@v2
         with:
           context: .
           platforms: linux/amd64, linux/arm64/v8
+          target: fpm
           push: true
           pull: true
           tags: shirokikh/file-service:latest
+          cache-from: type=registry,ref=shirokikh/file-service:buildcache
+          cache-to: type=registry,ref=shirokikh/file-service:buildcache,mode=max
+
+      - name: Build and push independent container
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          platforms: linux/amd64, linux/arm64/v8
+          target: independent
+          push: true
+          pull: true
+          tags: shirokikh/file-service:independent
           cache-from: type=registry,ref=shirokikh/file-service:buildcache
           cache-to: type=registry,ref=shirokikh/file-service:buildcache,mode=max

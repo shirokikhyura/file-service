@@ -11,11 +11,58 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc. router.request_context.host
 
+    FileService\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Tests/'
 
-    Files\Infrastructure\Controller\ErrorController:
+    FileService\Infrastructure\Controller\Common\ErrorController:
         arguments:
             - '@http_kernel'
             - '@error_renderer'
 
+    file.service.normalizer:
+        class: Symfony\Component\Serializer\Normalizer\ObjectNormalizer
+
+    file.service.serializer:
+        class: Symfony\Component\Serializer\Serializer
+        arguments:
+            - ['@file.service.normalizer']
+            - ['@serializer.encoder.json']
+
+    serializer: '@file.service.serializer'
+
+    env.files.path.resolver:
+        class: FileService\Application\Service\PathResolver
+        autowire: false
+        arguments:
+            - '%env(FILE_SAVER_PATH)%'
+            - '@tmp.path.resolver'
+
+    tmp.path.resolver:
+        class: FileService\Application\Service\TempPathResolver
+        arguments:
+            - '@project.files.path.resolver'
+
+    project.files.path.resolver:
+        class: FileService\Application\Service\PathResolver
+        arguments:
+            - '%kernel.project_dir%/files'
+
+    FileService\Application\Service\FileService:
+        lazy: true
+        arguments:
+            - '@Symfony\Component\Filesystem\Filesystem'
+            - '@FileService\Application\Dto\SaveFileDtoFactory'
+            - '@file.service.serializer'
+            - '@FileService\Application\Dto\DownloadFileDtoFactory'
+            - '@env.files.path.resolver'
+
+    FileService\Application\Dto\SaveFileDtoFactory: ~
+
+    FileService\Application\Dto\DownloadFileDtoFactory: ~
 
 

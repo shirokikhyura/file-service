@@ -1,3 +1,2 @@
 router:
   path: /
-  host: 'local-files.petap'

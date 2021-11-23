@@ -1,0 +1,79 @@
+{
+	"info": {
+		"_postman_id": "be493dd9-5f9f-4f7f-8bfd-fefbe0c8d021",
+		"name": "File service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:2000/v1/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2000",
+					"path": [
+						"v1",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Download",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:2000/v1/download/619a8a333da55",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2000",
+					"path": [
+						"v1",
+						"download",
+						"619a8a333da55"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get file",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:2000/619d5894d9f25.jpeg",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2000",
+					"path": [
+						"619d5894d9f25.jpeg"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

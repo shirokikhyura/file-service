@@ -1,6 +1,6 @@
 <?php
 
-namespace Files\Infrastructure\Controller;
+namespace FileService\Infrastructure\Controller\Common;
 
 use Symfony\Component\ErrorHandler\Exception\FlattenException;
 use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
@@ -15,7 +15,7 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 /**
  * Class ErrorController
- * @package Files\Infrastructure\Controller
+ * @package Infrastructure\Controller
  */
 class ErrorController extends AbstractController
 {
